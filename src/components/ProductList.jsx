@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchFromAPI } from '../slice/ProductSlice';
 import { addToCart } from '../slice/CartSlice';
-import { Navbar, Alert } from 'react-bootstrap';
+import { Navbar} from 'react-bootstrap';
 import { FaShoppingCart } from 'react-icons/fa';
+import { Link } from 'react-router-dom'; // Import Link for routing
 
 const ProductsList = () => {
   const dispatch = useDispatch();
@@ -45,14 +46,14 @@ const ProductsList = () => {
         <Navbar.Brand href="#home">Product List</Navbar.Brand>
       </Navbar>
       <div className="container mt-3">
-        <Alert variant="info">
-          <input
+        <div style={{display:'flex'}}>
+          <input className='form-control'
             type="text"
             placeholder="Search Products"
             value={searchTerm}
             onChange={handleSearch}
           />
-          <select onChange={handleFilterCategory} value={filterCategory}>
+          <select onChange={handleFilterCategory} value={filterCategory} className='form-select'>
             <option value="">All Categories</option>
             {categories.map((category, index) => (
               <option key={index} value={category}>
@@ -60,8 +61,13 @@ const ProductsList = () => {
               </option>
             ))}
           </select>
-        </Alert>
-
+          <button className='btn btn-primary'>
+  <Link to="/add-product" style={{ color: 'white', textDecoration: 'none' }}>
+    Add product
+  </Link>
+</button>
+        </div>
+        <br/>
         <div className="row">
           {filteredProducts.length > 0 ? (
             filteredProducts.map((product) => (
@@ -71,7 +77,7 @@ const ProductsList = () => {
                   <div className="card-body">
                     <h5>{product.title}</h5>
                     <p>Price: {product.price}€</p>
-                    <button onClick={() => handleAddToCart(product)}>
+                    <button className='btn btn-warning' onClick={() => handleAddToCart(product)}>
                       <FaShoppingCart /> Add to Cart
                     </button>
                   </div>
@@ -79,7 +85,7 @@ const ProductsList = () => {
               </div>
             ))
           ) : (
-            <p>No products found</p>
+            <p className='alert alert-danger'>No products found</p>
           )}
         </div>
       </div>

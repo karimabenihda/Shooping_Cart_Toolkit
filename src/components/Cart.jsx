@@ -27,16 +27,16 @@ const Cart = () => {
         <tbody>
           {cartItems.map((item) => (
             <tr key={item.id}>
-              <td>{item.name}</td>
+              <td>{item.title}</td>
               <td>
-                <button onClick={() => dispatch(decrementQuantity(item.id))}>-</button>
+                <button onClick={() => dispatch(decrementQuantity(item.id))} className='btn btn-danger'>-</button>
                 {item.quantity}
-                <button onClick={() => dispatch(incrementQuantity(item.id))}>+</button>
+                <button onClick={() => dispatch(incrementQuantity(item.id))} className='btn btn-success'>+</button>
               </td>
               <td>{item.price}€</td>
               <td>{item.price * item.quantity}€</td>
               <td>
-                <button onClick={() => dispatch(removeFromCart(item.id))}>Remove</button>
+                <button onClick={() => dispatch(removeFromCart(item.id))} className='btn btn-danger'>Remove</button>
               </td>
             </tr>
           ))}

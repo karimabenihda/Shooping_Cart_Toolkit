@@ -23,35 +23,35 @@ const AddEditProduct = ({ productToEdit }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input
+      <input className='form-control'
         type="text"
         title="title"
         value={product.title}
         onChange={handleChange}
         placeholder="Product Name"
       />
-      <input
+      <input className='form-control'
         type="number"
         title="price"
         value={product.price}
         onChange={handleChange}
         placeholder="Price"
       />
-      <input
+      <input className='form-control'
         type="text"
         title="image"
         value={product.image}
         onChange={handleChange}
         placeholder="Image URL"
       />
-      <input
+      <input className='form-control'
         type="text"
         title="category"
         value={product.category}
         onChange={handleChange}
         placeholder="Category"
       />
-      <button type="submit">Save</button>
+      <button className='btn btn-primary' type="submit">Save</button>
     </form>
   );
 };
